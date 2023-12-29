@@ -1,0 +1,45 @@
+
+<div>
+    <form #form ="ngForm"  >
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Department</label>
+            <select class="form-control" id="exampleFormControlSelect1"  #mySelect (change)="getClassSchedule(mySelect.value)">
+            <option *ngFor="let dept of ViewClassSchedultService.deptList" value="{{dept.id}}">{{dept.code}}-{{dept.name}}</option>
+        
+            </select>
+        </div>
+        
+      
+    </form>
+  </div>
+
+
+<h1>View Class Schedule</h1>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Course Code</th>
+        <th scope="col">Name/Title</th>
+        <th scope="col">Schedule</th>
+       
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let assign of this.ViewClassSchedultService.classScheduleViewList; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{assign.courseCode}}</td>
+        <td>{{assign.courseName}}</td>
+        <td>{{assign.scheduleInfo}}</td>
+       
+
+      </tr>
+     
+    </tbody>
+  </table>
+  
+
+

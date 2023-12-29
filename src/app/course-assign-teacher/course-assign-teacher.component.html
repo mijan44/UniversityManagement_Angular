@@ -1,0 +1,92 @@
+
+<div>
+    <form #form ="ngForm" (submit) ="onSubmit(form)" >
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Department</label>
+            <select class="form-control" id="exampleFormControlSelect1"  #departmentId="ngModel" name ="departmentId" [(ngModel)] = "AssignTeacherService.formData.departmentId" #mySelect (change)="getTeacher(mySelect.value)">
+            <option *ngFor="let dept of AssignTeacherService.deptList" value="{{dept.id}}">{{dept.code}}-{{dept.name}}</option>
+        
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Teacher</label>
+            <select class="form-control" id="exampleFormControlSelect1"  #teacherId="ngModel" name ="teacherId" [(ngModel)] = "AssignTeacherService.formData.teacherId"  #myTeacherSelect (change)="getTeacherDetails(myTeacherSelect.value)">
+            <option *ngFor="let teacher of AssignTeacherService.teacherlist"  value="{{teacher.id}}">{{teacher.teacherName}}</option>
+        
+            </select>
+        </div> 
+
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Credit To Be Taken</label>
+            <input type="text" class="form-control" placeholder="Credit To Be Taken" value="{{courseToBeTaken}}" readonly>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Remaining Credit</label>
+            <input type="number" class="form-control" placeholder="Remaining Credit" 
+            value="{{remainingCredit}}" readonly>
+          </div>
+
+
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Course Code</label>
+            <select class="form-control" id="exampleFormControlSelect1"  #courseId="ngModel" name ="courseId" [(ngModel)] = "AssignTeacherService.formData.courseId"   #myCourseSelect (change)="getCourseDetails(myCourseSelect.value)">
+            <option *ngFor="let course of AssignTeacherService.courseList" value="{{course.id}}">{{course.courseCode}}</option>
+        
+            </select>
+        </div>
+
+
+       <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Name</label>
+            <input type="text" class="form-control" placeholder="Course Name" value="{{courseInformation.courseName}}" readonly>
+          </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Credit</label>
+            <input type="text" class="form-control" placeholder="Course Credit"
+            value="{{courseInformation.courseCredit}}"  readonly>
+          </div>
+  
+      
+      <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid">Assign</button>
+    </form>
+  </div>
+
+
+<h1>Assigned All Teacher</h1>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Department</th>
+        <th scope="col">Teacher Name</th>
+        <th scope="col">Course</th>
+        <th scope="col">Course Credit</th>
+        <th scope="col">Credit To Be Taken</th>
+        <th scope="col">Remain Credit</th>
+        <th scope="col">Action</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let assign of this.AssignTeacherService.assignList; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{assign.departmentName}}</td>
+        <td>{{assign.teacherName}}</td>
+        <td>{{assign.courseName}}</td>
+        <td>{{assign.courseCredit}}</td>
+        <td>{{assign.assignedCredit}}</td>
+        <td>{{assign.remainingCredit}}</td>
+
+
+       <td><a (click)="updateAssignTeacher(assign)">Edit</a> &nbsp; &nbsp;<a (click)="deleteAssignTeacher(assign.id)" >Delete</a></td> 
+       
+        
+      </tr>
+     
+    </tbody>
+  </table>
+  

@@ -1,0 +1,105 @@
+
+<div>
+  <form #form ="ngForm" (submit) ="onSubmit(form)" >
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Course Code</label>
+      <input type="text" class="form-control" placeholder="Course Code" aria-describedby="emailHelp"
+      #courseCode="ngModel" name="courseCode" [(ngModel)] = "service.formData.courseCode"  required minlength="5">
+    </div>
+    <div *ngIf="courseCode.errors?.['required']">Course Code is required</div>
+    <div *ngIf="courseCode.errors?.['minlength']">
+      Course Code must be at least 5 characters long.
+    </div>
+
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Course Name</label>
+      <input type="text" class="form-control" placeholder="Course Name"
+      #courseName="ngModel" name ="courseName" [(ngModel)] = "service.formData.courseName" required>
+    </div>
+    <div *ngIf="courseName.errors?.['required']">Course Name is required.</div>
+
+
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Course Credit</label>
+    <input type="number" class="form-control" placeholder="Course Credit"
+    #courseCredit="ngModel" name ="courseCredit" [(ngModel)] = "service.formData.courseCredit" min="0.5" max="5" required>
+  </div>
+  <div *ngIf="courseCredit.errors?.['required']">Course credit is required.</div>
+  <div *ngIf="courseCredit.errors?.['min'] || courseCredit.errors?.['max']">
+      Course credit must be between 0.5 and 5
+  </div>
+  
+
+
+<div class="mb-3">
+  <label for="exampleInputPassword1" class="form-label">Course Description</label>
+  <input type="text" class="form-control" placeholder="Course Description"
+  #courseDescription="ngModel" name ="courseDescription" [(ngModel)] = "service.formData.courseDescription">
+</div>
+
+
+
+<div class="mb-3">
+  <label for="exampleInputPassword1" class="form-label">Department</label>
+ 
+  <select class="form-control" id="exampleFormControlSelect1"  #departmentId="ngModel" name ="departmentId" [(ngModel)] = "service.formData.departmentId">
+    <option *ngFor="let dept of service.deptlist" value="{{dept.id}}">{{dept.code}}-{{dept.name}}</option>
+
+  </select>
+</div>
+
+
+<div class="mb-3">
+  <label for="exampleInputPassword1" class="form-label">Semester</label>
+  
+  <select class="form-control" id="exampleFormControlSelect1" #semester="ngModel" name ="semester" [(ngModel)] = "service.formData.semester">
+    <!--<option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>  -->
+    <option *ngFor="let sem of semesters" [ngValue]="sem">{{ sem }}</option>
+    
+  </select> 
+</div>
+    
+    <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid">Save</button>
+  </form>
+</div>
+
+
+
+<h1>All Courses</h1>
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Course Code</th>
+        <th scope="col">Course Credit</th>
+        <th scope="col">Course Description</th>
+        <th scope="col">Course Name</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of service.list; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{course.courseCode}}</td>
+        <td>{{course.courseCredit}}</td>
+        <td>{{course.courseDescription}}</td>
+        <td>{{course.courseName}}</td>
+        
+        
+        <td><a (click)="updateCourse(course)">Edit</a> &nbsp; &nbsp;<a (click)="deleteCourse(course.id)" >Delete</a></td>
+      </tr>
+     
+    </tbody>
+  </table>
+  
+  

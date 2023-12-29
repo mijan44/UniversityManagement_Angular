@@ -1,0 +1,82 @@
+
+<div>
+    <form #form ="ngForm" (submit) ="onSubmit(form)" >
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Student Reg No</label>
+            <select class="form-control" id="exampleFormControlSelect1"  #studentId="ngModel" name ="studentId" [(ngModel)] = "EnrollCourseService.formData.studentId" #mySelect (change)="getStudentDetails(mySelect.value)">
+            <option *ngFor="let regNo of EnrollCourseService.studentList" value="{{regNo.id}}">{{regNo.registrationNumber}}</option>
+        
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Name</label>
+            <input type="text" class="form-control" placeholder="Name" value="{{this.EnrollCourseService.studentDetails.studentName}}" readonly>
+          </div>
+
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Email</label>
+            <input type="text" class="form-control" placeholder="Email" value="{{this.EnrollCourseService.studentDetails.studentEmail}}" readonly>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Department</label>
+            <input type="text" class="form-control" placeholder="Department" value="{{this.EnrollCourseService.studentDetails.registrationNumber}}" readonly>
+          </div>
+
+
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Select Course</label>
+            <select class="form-control" id="exampleFormControlSelect1"  #courseId="ngModel" name ="courseId" [(ngModel)] = "EnrollCourseService.formData.courseId" >
+            <option *ngFor="let course of EnrollCourseService.courseList" value="{{course.id}}">{{course.courseCode}}</option>
+        
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Date</label>
+            <input type="date"  class="form-control" placeholder="Date" #enrollmentDate="ngModel" name ="enrollmentDate" [(ngModel)] = "EnrollCourseService.formData.enrollmentDate">
+          </div>
+
+
+   
+  
+      
+      <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid">Assign</button>
+    </form>
+  </div>
+
+
+  <h1>Course Enrollment List</h1>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Student Reg No</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Department</th>
+        <th scope="col">Select Course</th>
+        <th scope="col">Date</th>
+        <th scope="col">Action</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let enroll of this.EnrollCourseService.StudentCourseenrollmentList; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{enroll.registrationNumber}}</td>
+        <td>{{enroll.studentName}}</td>
+        <td>{{enroll.studentEmail}}</td>
+        <td>{{enroll.departmentName}}</td>
+        <td>{{enroll.courseName}}</td>
+        <td>{{enroll.enrollmentDate | date :'MM/dd/yyyy'}}</td>
+        <td><a (click)="updateCourseEnroll(enroll)">Edit</a> &nbsp; &nbsp;<a (click)="deleteCourseEnroll(enroll.id)">Delete</a></td>
+        
+        
+      </tr>
+     
+    </tbody>
+  </table>
+  
+

@@ -1,0 +1,113 @@
+
+<div>
+    <form #form ="ngForm" (submit) ="onSubmit(form)" >
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Department</label>
+            <select class="form-control" id="exampleFormControlSelect1"  #departmentId="ngModel" name ="departmentId" [(ngModel)] = "ClassRoomAllocationServiceService.formData.departmentId" #mySelect (change)="getCourse(mySelect.value)">
+            <option *ngFor="let dept of ClassRoomAllocationServiceService.deptList" value="{{dept.id}}">{{dept.code}}-{{dept.name}}</option>
+        
+            </select>
+          </div>
+    
+      
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Course</label>
+            <select class="form-control" id="exampleFormControlSelect1"  #courseId="ngModel" name ="courseId" [(ngModel)] = "ClassRoomAllocationServiceService.formData.courseId">
+            <option *ngFor="let course of ClassRoomAllocationServiceService.courseList" value="{{course.id}}">{{course.courseName}}</option>
+        
+            </select>
+          </div>
+    
+
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Room No</label>
+            <select class="form-control" id="exampleFormControlSelect1"  #roomNo="ngModel" name ="roomNo" [(ngModel)] = "ClassRoomAllocationServiceService.formData.roomNo">
+            <option value="101">ROOM A</option>
+                <option value="102">ROOM B</option>
+                    <option value="103">ROOM C</option>
+                        <option value="104">ROOM D</option>
+                            <option value="105">ROOM E</option>
+                            <option value="106">ROOM F</option>
+                                <option value="107">ROOM G</option>
+        
+            </select>
+          </div>
+
+
+          
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Day</label>
+            <select class="form-control" id="exampleFormControlSelect1"  #day="ngModel" name ="day" [(ngModel)] = "ClassRoomAllocationServiceService.formData.day">
+           <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+                <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option> 
+        
+            </select>
+          </div>
+    
+    
+
+
+           <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">From</label>
+             <input type="time" class="form-control" placeholder="Form" formate
+              #from="ngModel" name ="from" [(ngModel)] = "ClassRoomAllocationServiceService.formData.from" >
+            </div> 
+
+ 
+
+            <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">To</label>
+            <input type="time" class="form-control" placeholder="To"
+                #to="ngModel" name ="to" [(ngModel)] = "ClassRoomAllocationServiceService.formData.to" >
+            </div> 
+
+
+
+      
+      
+      
+      
+      <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid">Allocate</button>
+    </form>
+  </div>
+  
+
+  
+<h1>All Class Room</h1>
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Department</th>
+        <th scope="col">Course</th>
+        <th scope="col">Room No</th>
+        <th scope="col">Day</th>
+        <th scope="col">From</th>
+        <th scope="col">To</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let regStd of ClassRoomAllocationServiceService.classRoomList; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{regStd.departmentName}}</td>
+        <td>{{regStd.courseName}}</td>
+        <td>{{regStd.roomNo}}</td>
+        <td>{{regStd.day}}</td>
+        <td>{{regStd.from}}</td>
+        <td>{{regStd.to}}</td>
+        
+        <td><a (click)="updateClassRoom(regStd)">Edit</a> &nbsp; &nbsp;<a (click)="deleteClassRoom(regStd.id)" >Delete</a></td>
+      </tr>
+     
+    </tbody>
+  </table>
+
+
+

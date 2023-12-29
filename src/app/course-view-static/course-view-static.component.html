@@ -1,0 +1,44 @@
+
+<div>
+    <form #form ="ngForm"  >
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Department</label>
+            <select class="form-control" id="exampleFormControlSelect1"  #mySelect (change)="getCourseViewStatic(mySelect.value)">
+            <option *ngFor="let dept of CourseViewStaticService.deptList" value="{{dept.id}}">{{dept.code}}-{{dept.name}}</option>
+        
+            </select>
+        </div>
+        
+      
+    </form>
+  </div>
+
+
+<h1>View Course Static</h1>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Course Code</th>
+        <th scope="col">Name/Title</th>
+        <th scope="col">Semester</th>
+        <th scope="col">Assign To</th>
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let assign of this.CourseViewStaticService.courseViewStatic; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{assign.courseCode}}</td>
+        <td>{{assign.courseName}}</td>
+        <td>{{assign.semester}}</td>
+        <td>{{assign.teacherName}}</td>
+
+      </tr>
+     
+    </tbody>
+  </table>
+  
+

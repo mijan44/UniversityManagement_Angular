@@ -1,0 +1,93 @@
+
+<div>
+    <form #form ="ngForm" (submit) ="onSubmit(form)" >
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Name</label>
+        <input type="text" class="form-control" placeholder="Student Name" aria-describedby="emailHelp"
+        #studentName="ngModel" name="studentName" [(ngModel)] = "StudentRegistrationService.formData.studentName" >    
+      </div>
+      
+  
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Email</label>
+        <input type="text" class="form-control" placeholder="Student Email"
+        #studentEmail="ngModel" name ="studentEmail" [(ngModel)] = "StudentRegistrationService.formData.studentEmail" >
+      </div>
+
+
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Contact No</label>
+        <input type="text" class="form-control" placeholder="Student Contact"
+        #studentContactNo="ngModel" name ="studentContactNo" [(ngModel)] = "StudentRegistrationService.formData.studentContactNo" >
+      </div>
+
+
+
+     <!--
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Date</label>
+        <input type="text" class="form-control" placeholder="Current Date">
+      </div>
+
+     -->
+
+ 
+
+     <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Address</label>
+       <input type="text" class="form-control" placeholder="Student Address"
+        #studentAddress="ngModel" name ="studentAddress" [(ngModel)] = "StudentRegistrationService.formData.studentAddress" >
+      </div> 
+
+
+
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Department</label>
+        <select class="form-control" id="exampleFormControlSelect1"  #departmentId="ngModel" name ="departmentId" [(ngModel)] = "StudentRegistrationService.formData.departmentId">
+        <option *ngFor="let dept of StudentRegistrationService.deptList" value="{{dept.id}}">{{dept.code}}-{{dept.name}}</option>
+    
+        </select>
+    </div>
+
+      
+      
+      
+      <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid">Register</button>
+    </form>
+  </div>
+  
+
+  
+<h1>All Students List</h1>
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact No</th>
+        <th scope="col">Address</th>
+        <th scope="col">Registration No</th>
+        <th scope="col">Department</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let regStd of StudentRegistrationService.studentList; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{regStd.studentName}}</td>
+        <td>{{regStd.studentEmail}}</td>
+        <td>{{regStd.studentContactNo}}</td>
+        <td>{{regStd.studentAddress}}</td>
+        <td>{{regStd.registrationNumber}}</td>
+        <td>{{regStd.departmentName}}</td>
+        
+        <td><a (click)="updateRegStudent(regStd)">Edit</a> &nbsp; &nbsp;<a (click)="deleteRegStudent(regStd.id)" >Delete</a></td>
+      </tr>
+     
+    </tbody>
+  </table>
+
+
+

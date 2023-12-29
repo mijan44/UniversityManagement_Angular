@@ -1,0 +1,50 @@
+
+<div>
+  <form #form ="ngForm" (submit) ="onSubmit(form)" >
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Department Code</label>
+      <input type="text" class="form-control" placeholder="Department Code" aria-describedby="emailHelp"
+      #code="ngModel" name="code" [(ngModel)] = "service.formData.code" required minlength="5">    
+    </div>
+    
+  <div *ngIf="code.errors?.['required']">Code is required.</div>
+    <div *ngIf="code.errors?.['minlength']">
+      Code must be at least 5 characters long.
+    </div>
+
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Department Name</label>
+      <input type="text" class="form-control" placeholder="Department Name"
+      #name="ngModel" name ="name" [(ngModel)] = "service.formData.name" required>
+    </div>
+    <div *ngIf="name.errors?.['required']">Name is required.</div>
+    
+    
+    <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid">Submit</button>
+  </form>
+</div>
+
+<h1>All Departments List</h1>
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Code</th>
+        <th scope="col">Name</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dept of service.list; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{dept.code}}</td>
+        <td>{{dept.name}}</td>
+        <td><a (click)="updateDepartment(dept)">Edit</a> &nbsp; &nbsp;<a (click)="deleteDepartment(dept.id)" >Delete</a></td>
+      </tr>
+     
+    </tbody>
+  </table>
+  
+  

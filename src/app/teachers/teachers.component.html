@@ -1,0 +1,115 @@
+<div>
+  <form #form ="ngForm" (submit) ="onSubmit(form)" >
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Name</label>
+      <input type="text" class="form-control" placeholder="Name" aria-describedby="emailHelp"
+      #teacherName="ngModel" name="teacherName" [(ngModel)] = "TeachersService.formData.teacherName"  required >
+    </div>
+    
+
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Address</label>
+      <input type="text" class="form-control" placeholder="Address"
+      #teacherAddress="ngModel" name ="teacherAddress" [(ngModel)] = "TeachersService.formData.teacherAddress" required>
+    </div>
+    
+
+
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Email</label>
+    <input type="text" class="form-control" placeholder="Course Credit"
+    #teacherEmail="ngModel" name ="teacherEmail" [(ngModel)] = "TeachersService.formData.teacherEmail" required>
+  </div>
+  
+  
+
+
+<div class="mb-3">
+  <label for="exampleInputPassword1" class="form-label">Contact</label>
+  <input type="text" class="form-control" placeholder="Contact"
+  #contactNo="ngModel" name ="contactNo" [(ngModel)] = "TeachersService.formData.contactNo">
+</div>
+
+
+<div class="mb-3">
+  <label for="exampleInputPassword1" class="form-label">Designation</label>
+  
+  <select class="form-control" id="exampleFormControlSelect1" #designation="ngModel" name ="designation" [(ngModel)] = "TeachersService.formData.designation">
+    <option>Lecturer</option>
+    <option>Senior Lecturer</option>
+    <option>Ass Professor</option>
+    <option>Professor</option>
+    <option>Deputy Dean</option>
+    <option>Head Of Department</option>
+    <option>Dean</option>
+    <option>Director</option>  
+    
+    
+  </select> 
+</div>
+
+
+
+<div class="mb-3">
+  <label for="exampleInputPassword1" class="form-label">Department</label>
+ 
+  <select class="form-control" id="exampleFormControlSelect1"  #departmentId="ngModel" name ="departmentId" [(ngModel)] = "TeachersService.formData.departmentId">
+    <option *ngFor="let dept of TeachersService.deptlist" value="{{dept.id}}">{{dept.code}}-{{dept.name}}</option>
+
+  </select>
+</div>
+
+<div class="mb-3">
+  <label for="exampleInputPassword1" class="form-label">Credit To Be Taken</label>
+  <input type="text" class="form-control" placeholder="Course Description"
+  #creditToBeTaken="ngModel" name ="courseDescription" [(ngModel)] = "TeachersService.formData.creditToBeTaken">
+</div>
+
+
+
+
+
+    
+    <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid">Save</button>
+  </form>
+</div>
+
+
+
+
+<h1>All Teachers</h1>
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Designation</th>
+        <th scope="col">Department</th>
+        <th scope="col">Credit to be Taken</th>
+        <th scope="col">Action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let teacher of TeachersService.teacherlist; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{teacher.teacherName}}</td>
+        <td>{{teacher.teacherAddress}}</td>
+        <td>{{teacher.teacherEmail}}</td>
+        <td>{{teacher.contactNo}}</td>
+        <td>{{teacher.designation}}</td>
+        <td>{{teacher.departmentName}}</td>
+        <td>{{teacher.creditToBeTaken}}</td>
+        
+        <td><a (click)="updateTeacher(teacher)">Edit</a> &nbsp; &nbsp;<a (click)="deleteTeacher(teacher.id)">Delete</a></td>
+        
+      </tr>
+     
+    </tbody>
+  </table>
