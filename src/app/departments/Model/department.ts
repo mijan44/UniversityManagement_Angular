@@ -1,5 +1,5 @@
 export class Department {
-    code: number= 0;
+    code: string='';
     name: string= '';
     id:string='';
 }

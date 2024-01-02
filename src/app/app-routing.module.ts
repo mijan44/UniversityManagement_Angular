@@ -10,6 +10,8 @@ import { EnrollCourseComponent } from './enroll-course/enroll-course.component';
 import { ResultComponent } from './result/result.component';
 import { CourseViewStaticComponent } from './course-view-static/course-view-static.component';
 import { ViewClassScheduleComponent } from './view-class-schedule/view-class-schedule.component';
+import { UnallocateAllClassRoomComponent } from './unallocate-all-class-room/unallocate-all-class-room.component';
+import { UnassignAllCoursesComponent } from './unassign-all-courses/unassign-all-courses.component';
 
 const routes: Routes = [
   { path: 'departments', component: DepartmentsComponent },
@@ -21,7 +23,9 @@ const routes: Routes = [
   { path:'EnrollCourse',component:EnrollCourseComponent},
   { path: 'Result', component: ResultComponent },
   { path: 'ViewCourseStatic', component: CourseViewStaticComponent  },
-  { path: 'ViewClassSchedule', component: ViewClassScheduleComponent }
+  { path: 'ViewClassSchedule', component: ViewClassScheduleComponent },
+  { path: 'UnallocateClassRoom', component: UnallocateAllClassRoomComponent},
+  { path: 'UnassignCourse',component: UnassignAllCoursesComponent}
 
  
  

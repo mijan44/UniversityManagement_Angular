@@ -3,14 +3,15 @@
   <form #form ="ngForm" (submit) ="onSubmit(form)" >
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Department Code</label>
-      <input type="text" class="form-control" placeholder="Department Code" aria-describedby="emailHelp"
+      <input type="text" class="form-control" placeholder="Department Code" 
       #code="ngModel" name="code" [(ngModel)] = "service.formData.code" required minlength="5">    
     </div>
     
   <div *ngIf="code.errors?.['required']">Code is required.</div>
-    <div *ngIf="code.errors?.['minlength']">
-      Code must be at least 5 characters long.
+  <div *ngIf="code.errors?.['minlength']">
+    Code must be at least 5 characters long.
     </div>
+   
 
 
     <div class="mb-3">
@@ -25,7 +26,7 @@
   </form>
 </div>
 
-<h1>All Departments List</h1>
+<h3>All Departments List</h3>
 
 <table class="table">
     <thead class="thead-dark">

@@ -16,6 +16,8 @@ import { EnrollCourseComponent } from './enroll-course/enroll-course.component';
 import { ResultComponent } from './result/result.component';
 import { CourseViewStaticComponent } from './course-view-static/course-view-static.component';
 import { ViewClassScheduleComponent } from './view-class-schedule/view-class-schedule.component';
+import { UnassignAllCoursesComponent } from './unassign-all-courses/unassign-all-courses.component';
+import { UnallocateAllClassRoomComponent } from './unallocate-all-class-room/unallocate-all-class-room.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ViewClassScheduleComponent } from './view-class-schedule/view-class-sch
     EnrollCourseComponent,
     ResultComponent,
     CourseViewStaticComponent,
-    ViewClassScheduleComponent
+    ViewClassScheduleComponent,
+    UnassignAllCoursesComponent,
+    UnallocateAllClassRoomComponent
   ],
   imports: [
     FormsModule,
