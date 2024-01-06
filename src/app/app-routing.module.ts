@@ -12,6 +12,9 @@ import { CourseViewStaticComponent } from './course-view-static/course-view-stat
 import { ViewClassScheduleComponent } from './view-class-schedule/view-class-schedule.component';
 import { UnallocateAllClassRoomComponent } from './unallocate-all-class-room/unallocate-all-class-room.component';
 import { UnassignAllCoursesComponent } from './unassign-all-courses/unassign-all-courses.component';
+import { UserComponent } from './user/user.component';
+import { LogInComponent } from './user/log-in/log-in.component';
+
 
 const routes: Routes = [
   { path: 'departments', component: DepartmentsComponent },
@@ -25,7 +28,9 @@ const routes: Routes = [
   { path: 'ViewCourseStatic', component: CourseViewStaticComponent  },
   { path: 'ViewClassSchedule', component: ViewClassScheduleComponent },
   { path: 'UnallocateClassRoom', component: UnallocateAllClassRoomComponent},
-  { path: 'UnassignCourse',component: UnassignAllCoursesComponent}
+  { path: 'UnassignCourse',component: UnassignAllCoursesComponent},
+  { path: 'UserRegistration', component: UserComponent },
+  {path:'UserLogin',component:LogInComponent},
 
  
  

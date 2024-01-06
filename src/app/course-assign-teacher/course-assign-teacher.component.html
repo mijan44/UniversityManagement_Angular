@@ -3,11 +3,13 @@
     <form #form ="ngForm" (submit) ="onSubmit(form)" >
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Department</label>
-            <select class="form-control" id="exampleFormControlSelect1"  #departmentId="ngModel" name ="departmentId" [(ngModel)] = "AssignTeacherService.formData.departmentId" #mySelect (change)="getTeacher(mySelect.value)">
+            <select class="form-control" id="exampleFormControlSelect1"  #departmentId="ngModel" name ="departmentId" [(ngModel)] = "AssignTeacherService.formData.departmentId" #mySelect (change)="getTeacher(mySelect.value)" required>
             <option *ngFor="let dept of AssignTeacherService.deptList" value="{{dept.id}}">{{dept.code}}-{{dept.name}}</option>
         
             </select>
         </div>
+        
+
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Teacher</label>
             <select class="form-control" id="exampleFormControlSelect1"  #teacherId="ngModel" name ="teacherId" [(ngModel)] = "AssignTeacherService.formData.teacherId"  #myTeacherSelect (change)="getTeacherDetails(myTeacherSelect.value)">
@@ -50,7 +52,7 @@
           </div>
   
       
-      <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid">Assign</button>
+      <button type="submit"class="btn btn-primary"  [disabled]="form.form.invalid" >Assign</button>
     </form>
   </div>
 
@@ -60,7 +62,7 @@
   <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">#</th>
+        <th scope="col">Index</th>
         <th scope="col">Department</th>
         <th scope="col">Teacher Name</th>
         <th scope="col">Course</th>

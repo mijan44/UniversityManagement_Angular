@@ -1,0 +1,52 @@
+
+<div>
+    <form #form ="ngForm" (submit) ="onSubmit(form)" >
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Name</label>
+        <input type="text" class="form-control" placeholder="User Name" 
+        #userName="ngModel" name="userName" [(ngModel)] = "UserService.formData.userName" required >    
+      </div>
+      
+    <div *ngIf="userName.errors?.['required']">Name is required.</div>
+   
+
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Address</label>
+        <input type="text" class="form-control" placeholder="User Address"
+        #userAddress="ngModel" name ="userAddress" [(ngModel)] = "UserService.formData.userAddress" required>
+      </div>
+      <div *ngIf="userAddress.errors?.['required']">Address is required.</div>
+
+
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Email</label>
+        <input type="text" class="form-control" placeholder="User Email"
+        #userEmail="ngModel" name ="userEmail" [(ngModel)] = "UserService.formData.userEmail" required>
+      </div>
+      <div *ngIf="userEmail.errors?.['required']">Email is required.</div>
+
+
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Contact</label>
+        <input type="text" class="form-control" placeholder="User Contact"
+        #userContact="ngModel" name ="userContact" [(ngModel)] = "UserService.formData.userContact" required>
+      </div>
+      <div *ngIf="userContact.errors?.['required']">Contact is required.</div>
+
+
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" placeholder="User Password"
+        #userPassword="ngModel" name ="userPassword" [(ngModel)] = "UserService.formData.userPassword" required>
+      </div>
+      <div *ngIf="userPassword.errors?.['required']">Password is required.</div>
+      
+      
+      <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid">Register</button>
+    </form>
+  </div>
+  
+  
+
+
+ 

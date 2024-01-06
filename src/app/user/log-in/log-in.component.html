@@ -1,0 +1,27 @@
+
+<div>
+    <form #form ="ngForm" (submit) ="onSubmit(form)" >
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Email</label>
+        <input type="text" class="form-control" placeholder="User Email"
+        #userEmail="ngModel" name ="userEmail" [(ngModel)] = "LoginService.formData.userEmail" required>
+      </div>
+      <div *ngIf="userEmail.errors?.['required']">Email is required.</div>
+
+
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" placeholder="User Password"
+        #userPassword="ngModel" name ="userPassword" [(ngModel)] = "LoginService.formData.userPassword" required>
+      </div>
+      <div *ngIf="userPassword.errors?.['required']">Password is required.</div>
+      
+      
+      <button type="submit" class="btn btn-primary" [disabled]="form.form.invalid">LogIn</button>
+    </form>
+  </div>
+  
+ 
+
+
+ 

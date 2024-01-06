@@ -18,6 +18,8 @@ import { CourseViewStaticComponent } from './course-view-static/course-view-stat
 import { ViewClassScheduleComponent } from './view-class-schedule/view-class-schedule.component';
 import { UnassignAllCoursesComponent } from './unassign-all-courses/unassign-all-courses.component';
 import { UnallocateAllClassRoomComponent } from './unallocate-all-class-room/unallocate-all-class-room.component';
+import { UserComponent } from './user/user.component';
+import { LogInComponent } from './user/log-in/log-in.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { UnallocateAllClassRoomComponent } from './unallocate-all-class-room/una
     CourseViewStaticComponent,
     ViewClassScheduleComponent,
     UnassignAllCoursesComponent,
-    UnallocateAllClassRoomComponent
+    UnallocateAllClassRoomComponent,
+    UserComponent,
+    LogInComponent
   ],
   imports: [
     FormsModule,
